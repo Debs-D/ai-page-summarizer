@@ -11,45 +11,40 @@
 
     <header class="header">
       <div class="header-left">
-        <div class="logo" aria-hidden="true">✦</div>
+        <div class="logo">✦</div>
         <h1 class="title">AI Summarizer</h1>
       </div>
-      <button id="settingsBtn" class="icon-btn" aria-label="Open settings" title="Settings">⚙</button>
+      <button id="settingsBtn" class="icon-btn" title="Settings">⚙</button>
     </header>
 
     <div class="page-info">
       <span id="pageTitle" class="page-title">Loading...</span>
     </div>
 
-    <!-- STATE: No API key configured -->
     <div id="noKeyState" class="state hidden">
-      <div class="state-icon" aria-hidden="true">🔑</div>
+      <div class="state-icon">🔑</div>
       <p class="state-text">Add your Gemini API key to get started</p>
       <button id="goToSettingsBtn" class="btn btn-primary">Open Settings</button>
     </div>
 
-    <!-- STATE: Ready to summarize -->
     <div id="idleState" class="state hidden">
       <button id="summarizeBtn" class="btn btn-primary btn-large">
-        <span class="btn-icon" aria-hidden="true">✦</span>
+        <span class="btn-icon">✦</span>
         Summarize Page
       </button>
     </div>
 
-    <!-- STATE: AI is working -->
-    <div id="loadingState" class="state hidden" role="status" aria-live="polite">
-      <div class="spinner" aria-hidden="true"></div>
+    <div id="loadingState" class="state hidden">
+      <div class="spinner"></div>
       <p class="loading-text">Analyzing page content...</p>
     </div>
 
-    <!-- STATE: Something went wrong -->
-    <div id="errorState" class="state hidden" role="alert">
-      <div class="state-icon" aria-hidden="true">⚠</div>
+    <div id="errorState" class="state hidden">
+      <div class="state-icon">⚠</div>
       <p id="errorMessage" class="error-text"></p>
       <button id="retryBtn" class="btn btn-secondary">Try Again</button>
     </div>
 
-    <!-- STATE: Summary is ready -->
     <div id="summaryState" class="state hidden">
       <div class="summary-meta">
         <span id="readingTime" class="meta-badge">⏱ Reading time</span>
@@ -58,12 +53,12 @@
 
       <section class="summary-section">
         <h2 class="section-title">Summary</h2>
-        <ul id="summaryList" class="bullet-list" aria-label="Page summary"></ul>
+        <ul id="summaryList" class="bullet-list"></ul>
       </section>
 
       <section class="summary-section">
         <h2 class="section-title">Key Insights</h2>
-        <ul id="insightsList" class="bullet-list insights" aria-label="Key insights"></ul>
+        <ul id="insightsList" class="bullet-list insights"></ul>
       </section>
 
       <div class="summary-actions">
