@@ -1,10 +1,7 @@
-const DEFAULT_API_KEY = "PASTE_YOUR_GEMINI_KEY_HERE";
+const DEFAULT_API_KEY = "AIzaSyDZvPIodTYWE6LzAuOUYroFNhsILIqur8A";
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const { geminiApiKey } = await chrome.storage.local.get("geminiApiKey");
-  if (!geminiApiKey && DEFAULT_API_KEY) {
-    await chrome.storage.local.set({ geminiApiKey: DEFAULT_API_KEY });
-  }
+  await chrome.storage.local.set({ geminiApiKey: DEFAULT_API_KEY });
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -102,22 +99,24 @@ Page Content:
 ${content}`;
 
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
-          maxOutputTokens: 1024,
-          temperature: 0.3
+          maxOutputTokens: 4096,
+          temperature: 0.3,
+          thinkingConfig: { thinkingBudget: 0 }
         }
       })
     }
   );
 
   if (!res.ok) {
-    await res.json().catch(() => ({}));
+    const errBody = await res.json().catch(() => ({}));
+    console.error("Gemini API error:", res.status, JSON.stringify(errBody));
     if (res.status === 429) throw new Error("RATE_LIMIT");
     if (res.status === 400) throw new Error("INVALID_KEY");
     throw new Error(`API_ERROR_${res.status}`);
