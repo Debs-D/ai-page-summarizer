@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — AI Page Summarizer</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo" aria-hidden="true">✦</div>
+      <h1>Settings</h1>
+    </header>
+
+    <!-- API Key Section -->
+    <section class="card">
+      <h2>API Configuration</h2>
+      <p class="description">
+        This extension uses the <strong>Gemini API</strong> (free tier — no credit card needed).
+        Get your key at <strong>aistudio.google.com</strong> → Get API Key → Create API key.
+      </p>
+
+      <div class="form-group">
+        <label for="apiKey">Gemini API Key</label>
+        <div class="input-wrapper">
+          <input
+            type="password"
+            id="apiKey"
+            placeholder="AIza..."
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="keyHint"
+          >
+          <button id="toggleVisibility" class="toggle-btn" aria-label="Toggle key visibility">
+            <span id="eyeIcon">👁</span>
+          </button>
+        </div>
+        <p id="keyHint" class="hint">Your key is stored locally in your browser and never sent anywhere except the Gemini API.</p>
+      </div>
+
+      <div class="form-actions">
+        <button id="saveBtn" class="btn btn-primary">Save Key</button>
+        <button id="clearKeyBtn" class="btn btn-ghost">Clear Key</button>
+      </div>
+
+      <div id="status" class="status hidden" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Cache Management Section -->
+    <section class="card">
+      <h2>Cache Management</h2>
+      <p class="description">
+        Summaries are cached per URL so you never call the API twice for the same page.
+        Clear all cached summaries here if you want fresh results.
+      </p>
+      <button id="clearCacheBtn" class="btn btn-secondary">Clear All Cached Summaries</button>
+      <div id="cacheStatus" class="status hidden" role="status" aria-live="polite"></div>
+    </section>
+
+    <footer>
+      <p>API keys are stored only in your local browser storage. They are never committed to code or sent to any server other than Gemini.</p>
+    </footer>
+
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
