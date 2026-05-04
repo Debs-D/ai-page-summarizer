@@ -1,4 +1,4 @@
-const DEFAULT_API_KEY = "AIzaSyDZvPIodTYWE6LzAuOUYroFNhsILIqur8A";
+importScripts('config.js');
 
 chrome.runtime.onInstalled.addListener(async () => {
   await chrome.storage.local.set({ geminiApiKey: DEFAULT_API_KEY });
